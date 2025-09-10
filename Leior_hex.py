@@ -53,14 +53,6 @@ def robust_read_pgm(path, expected_shape=(256, 256)):
 # Golden Sobel-X corrigido (conforme relatório)
 # =====================
 def sobelx_golden(img):
-    """
-    Implementa Sobel-X conforme relatório:
-    - Convolução 3x3
-    - Normalização por 8 (>>3)
-    - Valor absoluto
-    - Ganho x2
-    - Saturação/clamp [0,255]
-    """
     kernel = np.array([[-1,0,1],
                        [-2,0,2],
                        [-1,0,1]], dtype=np.int32)
@@ -134,6 +126,18 @@ axes[1].imshow(golden, cmap="gray"); axes[1].set_title("Golden Python (Sobel-X c
 axes[2].imshow(img_verilog, cmap="gray"); axes[2].set_title("Saída Verilog (.pgm)"); axes[2].axis("off")
 diff_abs = np.abs(golden.astype(int)-img_verilog.astype(int)).astype(np.uint8)
 axes[3].imshow(diff_abs, cmap="inferno"); axes[3].set_title("Diferença Absoluta"); axes[3].axis("off")
+plt.show()
+
+# =====================
+# Histogramas comparativos
+# =====================
+plt.figure(figsize=(7,5))
+plt.hist(golden.ravel(), bins=256, range=(0,255), color='blue', alpha=0.5, label='Golden Python')
+plt.hist(img_verilog.ravel(), bins=256, range=(0,255), color='red', alpha=0.5, label='Verilog')
+plt.title("Histograma comparativo Golden vs Verilog")
+plt.xlabel("Níveis de cinza")
+plt.ylabel("Frequência")
+plt.legend()
 plt.show()
 
 # =====================
