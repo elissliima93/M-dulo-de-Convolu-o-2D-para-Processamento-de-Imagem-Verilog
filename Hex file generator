@@ -1,6 +1,6 @@
 #Carrega a imagem em escala de cinza (0–255).
 #Gera o .hex: cada pixel é convertido para dois dígitos hexadecimais (00 a FF), um por linha → formato que o $readmemh entende direto.
-#Ele gera dois histogramas sobrepostos:
+#Ele gera dois histogramas sobrepostos para avaliar a qualidade do arquivo .hex
 
 #Azul → imagem original.
 
