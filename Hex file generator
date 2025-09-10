@@ -1,8 +1,9 @@
 #Carrega a imagem em escala de cinza (0–255).
 #Gera o .hex: cada pixel é convertido para dois dígitos hexadecimais (00 a FF), um por linha → formato que o $readmemh entende direto.
 
-import numpy as np
+iimport numpy as np
 from PIL import Image
+import matplotlib.pyplot as plt   # <<< adicionado para o histograma
 
 # ===== 1) Carregar a imagem =====
 # Troque "sua_imagem.png" pelo caminho da imagem de entrada
@@ -44,46 +45,13 @@ arr_reload = np.array(vals_reload, dtype=np.uint8).reshape(arr.shape)
 diff = arr.astype(np.int16) - arr_reload.astype(np.int16)
 print("Diferença min/max:", diff.min(), diff.max())
 print("Reconstrução idêntica?", np.all(arr == arr_reload))
-import numpy as np
-from PIL import Image
 
-# ===== 1) Carregar a imagem =====
-# Troque "sua_imagem.png" pelo caminho da imagem de entrada
-input_path = "sua_imagem.png"
-img = Image.open(input_path).convert("L")   # força escala de cinza (8 bits)
-arr = np.array(img)
-
-print("Imagem carregada:", arr.shape, "range:", arr.min(), "->", arr.max())
-
-# ===== 2) Gerar arquivo HEX =====
-# Cada pixel vira uma linha no arquivo (00–FF em hexadecimal)
-hex_lines = [f"{val:02X}" for val in arr.flatten()]
-hex_content = "\n".join(hex_lines)
-
-hex_path = "saida.hex"
-with open(hex_path, "w") as f:
-    f.write(hex_content)
-
-print("Arquivo HEX gerado:", hex_path)
-
-# ===== 3) Gerar arquivo PGM =====
-# PGM (Portable Gray Map) no formato ASCII (P2)
-pgm_path = "saida.pgm"
-with open(pgm_path, "w") as f:
-    f.write("P2\n")
-    f.write(f"{arr.shape[1]} {arr.shape[0]}\n")   # largura altura
-    f.write("255\n")                              # intensidade máxima
-    for val in arr.flatten():
-        f.write(f"{val}\n")
-
-print("Arquivo PGM gerado:", pgm_path)
-
-# ===== 4) Verificação opcional =====
-# Recarregar o HEX e comparar com a imagem original
-with open(hex_path, "r") as f:
-    vals_reload = [int(line.strip(), 16) for line in f if line.strip() != ""]
-arr_reload = np.array(vals_reload, dtype=np.uint8).reshape(arr.shape)
-
-diff = arr.astype(np.int16) - arr_reload.astype(np.int16)
-print("Diferença min/max:", diff.min(), diff.max())
-print("Reconstrução idêntica?", np.all(arr == arr_reload))
+# ===== 5) Histograma =====
+plt.figure(figsize=(8,4))
+plt.hist(arr.flatten(), bins=256, range=(0,255), color="blue", alpha=0.5, label="Original")
+plt.hist(arr_reload.flatten(), bins=256, range=(0,255), color="red", alpha=0.5, linestyle="--", label="Reconstruída HEX")
+plt.title("Comparação de Histogramas — Original vs HEX")
+plt.xlabel("Nível de cinza (0–255)")
+plt.ylabel("Contagem de pixels")
+plt.legend()
+plt.show()
