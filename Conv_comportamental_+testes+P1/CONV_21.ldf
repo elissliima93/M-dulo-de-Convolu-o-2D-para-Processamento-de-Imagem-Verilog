@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BaliProject version="3.2" title="CONV_21" device="LFE5U-45F-6BG381C" default_implementation="impl1">
+    <Options/>
+    <Implementation title="impl1" dir="impl1" description="impl1" synthesis="lse" default_strategy="Strategy1">
+        <Options/>
+        <Source name="Top_mult_v2.v" type="Verilog" type_short="Verilog" excluded="TRUE">
+            <Options/>
+        </Source>
+        <Source name="convolutor_3x3_2.v" type="Verilog" type_short="Verilog" excluded="TRUE">
+            <Options/>
+        </Source>
+        <Source name="LineBuffer3X3.v" type="Verilog" type_short="Verilog" excluded="TRUE">
+            <Options/>
+        </Source>
+        <Source name="top_multilane_p4_tf.v" type="Verilog" type_short="Verilog" excluded="TRUE" syn_sim="SimOnly">
+            <Options/>
+        </Source>
+        <Source name="conv.v" type="Verilog" type_short="Verilog" excluded="TRUE">
+            <Options/>
+        </Source>
+        <Source name="TB_8X8.v" type="Verilog" type_short="Verilog" syn_sim="SimOnly">
+            <Options/>
+        </Source>
+        <Source name="TB_16X16.v" type="Verilog" type_short="Verilog" excluded="TRUE" syn_sim="SimOnly">
+            <Options/>
+        </Source>
+        <Source name="TB_32X32.v" type="Verilog" type_short="Verilog" excluded="TRUE" syn_sim="SimOnly">
+            <Options/>
+        </Source>
+        <Source name="TB_64x64.v" type="Verilog" type_short="Verilog" excluded="TRUE" syn_sim="SimOnly">
+            <Options/>
+        </Source>
+        <Source name="TB_128x128.v" type="Verilog" type_short="Verilog" excluded="TRUE" syn_sim="SimOnly">
+            <Options/>
+        </Source>
+        <Source name="TB_256x256.v" type="Verilog" type_short="Verilog" excluded="TRUE" syn_sim="SimOnly">
+            <Options/>
+        </Source>
+        <Source name="Convolutor3x3_tf.v" type="Verilog" type_short="Verilog" excluded="TRUE" syn_sim="SimOnly">
+            <Options/>
+        </Source>
+        <Source name="conv3x3_pipe2.v" type="Verilog" type_short="Verilog" excluded="TRUE">
+            <Options/>
+        </Source>
+        <Source name="conv3x3_pipe_tf.v" type="Verilog" type_short="Verilog" excluded="TRUE" syn_sim="SimOnly">
+            <Options/>
+        </Source>
+        <Source name="valid_delay.v" type="Verilog" type_short="Verilog" excluded="TRUE">
+            <Options/>
+        </Source>
+        <Source name="top_conv.v" type="Verilog" type_short="Verilog" excluded="TRUE">
+            <Options/>
+        </Source>
+        <Source name="CONV_21.lpf" type="Logic Preference" type_short="LPF">
+            <Options/>
+        </Source>
+        <Source name="TB/TB.spf" type="Simulation Project File" type_short="SPF">
+            <Options/>
+        </Source>
+        <Source name="TB2/TB2.spf" type="Simulation Project File" type_short="SPF">
+            <Options/>
+        </Source>
+        <Source name="TB3/TB3.spf" type="Simulation Project File" type_short="SPF">
+            <Options/>
+        </Source>
+        <Source name="test_64x64/test_64x64.spf" type="Simulation Project File" type_short="SPF">
+            <Options/>
+        </Source>
+        <Source name="tsst_lenaconvolutor_separado/tsst_lenaconvolutor_separado.spf" type="Simulation Project File" type_short="SPF">
+            <Options/>
+        </Source>
+        <Source name="tst/tst.spf" type="Simulation Project File" type_short="SPF">
+            <Options/>
+        </Source>
+        <Source name="TST4/TST4.spf" type="Simulation Project File" type_short="SPF">
+            <Options/>
+        </Source>
+        <Source name="TST5/TST5.spf" type="Simulation Project File" type_short="SPF">
+            <Options/>
+        </Source>
+        <Source name="tst_128x128/tst_128x128.spf" type="Simulation Project File" type_short="SPF">
+            <Options/>
+        </Source>
+        <Source name="Tst_16x16/Tst_16x16.spf" type="Simulation Project File" type_short="SPF">
+            <Options/>
+        </Source>
+        <Source name="tst_256x256/tst_256x256.spf" type="Simulation Project File" type_short="SPF">
+            <Options/>
+        </Source>
+        <Source name="tst_8x8/tst_8x8.spf" type="Simulation Project File" type_short="SPF">
+            <Options/>
+        </Source>
+        <Source name="tst_pipe2/tst_pipe2.spf" type="Simulation Project File" type_short="SPF">
+            <Options/>
+        </Source>
+        <Source name="ttst_32x32/ttst_32x32.spf" type="Simulation Project File" type_short="SPF">
+            <Options/>
+        </Source>
+    </Implementation>
+    <Strategy name="Strategy1" file="CONV_211.sty"/>
+</BaliProject>
