@@ -1,0 +1,33 @@
+#Exportar direto para decimal (0–255) em vez de hex, e geerar o arquivo que vai ser lido pelo Verilog
+# Generate a new HEX file but in decimal format (0–255, one value per line)
+
+import numpy as np
+from PIL import Image
+
+# ===== 1) Carregar a imagem =====
+# Use um PNG/JPEG/PGM de entrada
+input_path = "lena.png"     # troque pelo nome do seu arquivo
+img = Image.open(input_path).convert("L")  # converte para escala de cinza
+arr = np.array(img)
+
+print("Imagem carregada:", arr.shape, "range:", arr.min(), "->", arr.max())
+
+# ===== 2) Gerar arquivo HEX em decimal =====
+# Cada pixel vai em uma linha, no intervalo 0–255
+dec_lines = [str(val) for val in arr.flatten()]
+dec_content = "\n".join(dec_lines)
+
+output_path = "lena_256x256_decimal.hex"
+with open(output_path, "w") as f:
+    f.write(dec_content)
+
+print("Arquivo gerado:", output_path)
+
+# ===== 3) (Opcional) Verificar reconstrução =====
+# Carregar de volta o HEX para checar se está igual ao original
+arr_dec = np.loadtxt(output_path, dtype=np.uint8).reshape(arr.shape)
+
+# Comparar diferença
+diff = arr.astype(np.int16) - arr_dec.astype(np.int16)
+print("Diferença min/max:", diff.min(), diff.max())
+print("Reconstrução idêntica?", np.all(arr == arr_dec))
