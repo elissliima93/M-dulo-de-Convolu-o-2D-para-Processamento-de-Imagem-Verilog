@@ -1,0 +1,22 @@
+{C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22/valid_delay.v} {1 {vlog -work work -vopt -stats=none {C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22/valid_delay.v}
+Questa Lattice OEM Edition-64 vlog 2024.2 Compiler 2024.05 May 20 2024
+-- Compiling module valid_delay
+
+Top level modules:
+	valid_delay
+
+} {} {}} {C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22/Conv_3x3.v} {1 {vlog -work work -vopt -stats=none {C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22/Conv_3x3.v}
+Questa Lattice OEM Edition-64 vlog 2024.2 Compiler 2024.05 May 20 2024
+-- Compiling module conv3x3_pipe
+
+Top level modules:
+	conv3x3_pipe
+
+} {} {}} {C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22/linerr_buff_3x3.v} {1 {vlog -work work -vopt -stats=none {C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22/linerr_buff_3x3.v}
+Questa Lattice OEM Edition-64 vlog 2024.2 Compiler 2024.05 May 20 2024
+-- Compiling module linebuf3x3_win_p
+
+Top level modules:
+	linebuf3x3_win_p
+
+} {} {}}

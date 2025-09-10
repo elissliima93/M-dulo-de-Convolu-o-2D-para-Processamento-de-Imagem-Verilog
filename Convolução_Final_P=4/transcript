@@ -1,0 +1,638 @@
+# Reading pref.tcl
+# //  Questa Lattice OEM Edition-64
+# //  Version 2024.2 win64 May 20 2024
+# //
+# // Unpublished work. Copyright 2024 Siemens
+# //
+# // This material contains trade secrets or otherwise confidential information
+# // owned by Siemens Industry Software Inc. or its affiliates (collectively,
+# // "SISW"), or its licensors. Access to and use of this information is strictly
+# // limited as set forth in the Customer's applicable agreements with SISW.
+# //
+# // This material may not be copied, distributed, or otherwise disclosed outside
+# // of the Customer's facilities without the express written permission of SISW,
+# // and may not be used in any way not expressly authorized by SISW.
+# //
+# do {C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22/ttest1/ttest1.mdo}
+# Loading project ttest1
+# Questa Lattice OEM Edition-64 vlog 2024.2 Compiler 2024.05 May 20 2024
+# Start time: 23:26:14 on Sep 09,2025
+# vlog -reportprogress 300 "+incdir+C:/Users/KABUM/Documents/CI" DIGITAL/Codigos/PROJETO/Conv_22 -work work C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22/valid_delay.v 
+# ** Error: (vlog-7) Failed to open design unit file "DIGITAL/Codigos/PROJETO/Conv_22" in read mode.
+# No such file or directory. (errno = ENOENT)
+# End time: 23:26:14 on Sep 09,2025, Elapsed time: 0:00:00
+# Errors: 1, Warnings: 0
+# ** Error: C:/lscc/diamond/3.14/questasim/win64/vlog failed.
+# Error in macro C:\Users\KABUM\Documents\CI DIGITAL\Codigos\PROJETO\Conv_22\ttest1\ttest1.mdo line 19
+# C:/lscc/diamond/3.14/questasim/win64/vlog failed.
+#     while executing
+# "vlog  +incdir+C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22  -work work  "C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22/va..."
+#     invoked from within
+# "if {![file exists "C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22/ttest1/ttest1.mpf"]} { 
+# 	project new "C:/Users/KABUM/Documents/CI DIGIT..."
+# Compile of valid_delay.v was successful.
+# Compile of Conv_3x3.v was successful.
+# Compile of linerr_buff_3x3.v was successful.
+# Compile of Top_conv_p.v was successful.
+# Compile of Top_conv_p_tf.v was successful.
+# 5 compiles, 0 failed with no errors.
+vsim -voptargs=+acc work.tb_Top_conv_p4
+# vsim -voptargs="+acc" work.tb_Top_conv_p4 
+# Start time: 23:26:36 on Sep 09,2025
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility. The +acc switch would be deprecated in a future release.
+# ** Warning: C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22/Top_conv_p_tf.v(37): (vopt-2685) [TFMPC] - Too few port connections for 'DUT'.  Expected 16, found 15.
+# ** Warning: C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22/Top_conv_p_tf.v(37): (vopt-2718) [TFMPC] - Missing connection for port 'win_valid_vec'.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=3.
+# Loading work.tb_Top_conv_p4(fast)
+# Loading work.Top_conv_p(fast)
+# Loading work.linebuf3x3_win_p(fast)
+# Loading work.conv3x3_pipe(fast)
+# Loading work.valid_delay(fast)
+run
+# 
+# --- MONITOR (CONV_LAT=2) ---
+# t(ns)   | lane | win_valid exp_q out_q | out_pix
+# 1386000 |  0   |     1      1    1  |   14
+# 1386000 |  1   |     1      1    1  |   6
+# 1386000 |  2   |     1      1    1  |   32
+# 1386000 |  3   |     1      1    1  |   32
+# --------------------------------------------------
+# 1396000 |  0   |     1      1    1  |   2
+# 1396000 |  1   |     1      1    1  |   22
+# 1396000 |  2   |     1      1    1  |   36
+# 1396000 |  3   |     1      1    1  |   0
+# --------------------------------------------------
+# 1406000 |  0   |     1      1    1  |   10
+# 1406000 |  1   |     1      1    1  |   14
+# 1406000 |  2   |     1      1    1  |   20
+# 1406000 |  3   |     1      1    1  |   56
+# --------------------------------------------------
+# 1416000 |  0   |     1      1    1  |   80
+# 1416000 |  1   |     1      1    1  |   88
+# 1416000 |  2   |     1      1    1  |   116
+# 1416000 |  3   |     1      1    1  |   124
+# --------------------------------------------------
+# 1426000 |  0   |     1      1    1  |   88
+# 1426000 |  1   |     1      1    1  |   58
+# 1426000 |  2   |     1      1    1  |   2
+# 1426000 |  3   |     1      1    1  |   14
+# --------------------------------------------------
+# 1436000 |  0   |     1      1    1  |   18
+# 1436000 |  1   |     1      1    1  |   32
+# 1436000 |  2   |     1      1    1  |   16
+# 1436000 |  3   |     1      1    1  |   20
+# --------------------------------------------------
+# 1446000 |  0   |     1      1    1  |   14
+# 1446000 |  1   |     1      1    1  |   16
+# 1446000 |  2   |     1      1    1  |   0
+# 1446000 |  3   |     1      1    1  |   16
+# --------------------------------------------------
+# 1456000 |  0   |     1      1    1  |   12
+# 1456000 |  1   |     1      1    1  |   8
+# 1456000 |  2   |     1      1    1  |   18
+# 1456000 |  3   |     1      1    1  |   2
+# --------------------------------------------------
+# OK: escritos 65536 pixels. PGM salvo: out_256x256_Lena_TopConvP4.pgm
+# ** Note: $finish    : C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22/Top_conv_p_tf.v(193)
+#    Time: 163905 ns  Iteration: 1  Instance: /tb_Top_conv_p4
+# 1
+# Break in Module tb_Top_conv_p4 at C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22/Top_conv_p_tf.v line 193
+# Compile of valid_delay.v was successful.
+# Compile of Conv_3x3.v was successful.
+# Compile of linerr_buff_3x3.v was successful.
+# Compile of Top_conv_p.v was successful.
+# Compile of Top_conv_p_tf.v was successful.
+# 5 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility. The +acc switch would be deprecated in a future release.
+# ** Warning: C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22/Top_conv_p_tf.v(37): (vopt-2685) [TFMPC] - Too few port connections for 'DUT'.  Expected 16, found 15.
+# ** Warning: C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22/Top_conv_p_tf.v(37): (vopt-2718) [TFMPC] - Missing connection for port 'win_valid_vec'.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=3.
+# Loading work.tb_Top_conv_p4(fast)
+# Loading work.Top_conv_p(fast)
+# Loading work.linebuf3x3_win_p(fast)
+# Loading work.conv3x3_pipe(fast)
+# Loading work.valid_delay(fast)
+run
+# 
+# --- MONITOR (CONV_LAT=2) ---
+# t(ns)   | lane | win_valid exp_q out_q | out_pix
+# 1386000 |  0   |     1      1    1  |   14
+# 1386000 |  1   |     1      1    1  |   6
+# 1386000 |  2   |     1      1    1  |   32
+# 1386000 |  3   |     1      1    1  |   32
+# --------------------------------------------------
+# 1396000 |  0   |     1      1    1  |   2
+# 1396000 |  1   |     1      1    1  |   22
+# 1396000 |  2   |     1      1    1  |   36
+# 1396000 |  3   |     1      1    1  |   0
+# --------------------------------------------------
+# 1406000 |  0   |     1      1    1  |   10
+# 1406000 |  1   |     1      1    1  |   14
+# 1406000 |  2   |     1      1    1  |   20
+# 1406000 |  3   |     1      1    1  |   56
+# --------------------------------------------------
+# 1416000 |  0   |     1      1    1  |   80
+# 1416000 |  1   |     1      1    1  |   88
+# 1416000 |  2   |     1      1    1  |   116
+# 1416000 |  3   |     1      1    1  |   124
+# --------------------------------------------------
+# 1426000 |  0   |     1      1    1  |   88
+# 1426000 |  1   |     1      1    1  |   58
+# 1426000 |  2   |     1      1    1  |   2
+# 1426000 |  3   |     1      1    1  |   14
+# --------------------------------------------------
+# 1436000 |  0   |     1      1    1  |   18
+# 1436000 |  1   |     1      1    1  |   32
+# 1436000 |  2   |     1      1    1  |   16
+# 1436000 |  3   |     1      1    1  |   20
+# --------------------------------------------------
+# 1446000 |  0   |     1      1    1  |   14
+# 1446000 |  1   |     1      1    1  |   16
+# 1446000 |  2   |     1      1    1  |   0
+# 1446000 |  3   |     1      1    1  |   16
+# --------------------------------------------------
+# 1456000 |  0   |     1      1    1  |   12
+# 1456000 |  1   |     1      1    1  |   8
+# 1456000 |  2   |     1      1    1  |   18
+# 1456000 |  3   |     1      1    1  |   2
+# --------------------------------------------------
+# OK: escritos 65536 pixels. PGM salvo: out_256x256_Lena_TopConvP4.pgm
+# ** Note: $finish    : C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22/Top_conv_p_tf.v(194)
+#    Time: 163905 ns  Iteration: 1  Instance: /tb_Top_conv_p4
+# 1
+# Break in Module tb_Top_conv_p4 at C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22/Top_conv_p_tf.v line 194
+# Compile of valid_delay.v was successful.
+# Compile of Conv_3x3.v was successful.
+# Compile of linerr_buff_3x3.v was successful.
+# Compile of Top_conv_p.v was successful.
+# Compile of Top_conv_p_tf.v was successful.
+# 5 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility. The +acc switch would be deprecated in a future release.
+# ** Warning: C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22/Top_conv_p_tf.v(37): (vopt-2685) [TFMPC] - Too few port connections for 'DUT'.  Expected 16, found 15.
+# ** Warning: C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22/Top_conv_p_tf.v(37): (vopt-2718) [TFMPC] - Missing connection for port 'win_valid_vec'.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=3.
+# Loading work.tb_Top_conv_p4(fast)
+# Loading work.Top_conv_p(fast)
+# Loading work.linebuf3x3_win_p(fast)
+# Loading work.conv3x3_pipe(fast)
+# Loading work.valid_delay(fast)
+run
+# ** Warning: (vsim-PLI-3406) Too many digits (3) in data on line 1 of file "lena_256x256_decimal.hex". (Max is 2.)    : C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22/Top_conv_p_tf.v(141)
+#    Time: 0 ps  Iteration: 0  Instance: /tb_Top_conv_p4
+# 
+# --- MONITOR (CONV_LAT=2) ---
+# t(ns)   | lane | win_valid exp_q out_q | out_pix
+# 1386000 |  0   |     1      1    1  |   x
+# 1386000 |  1   |     1      1    1  |   x
+# 1386000 |  2   |     1      1    1  |   x
+# 1386000 |  3   |     1      1    1  |   x
+# --------------------------------------------------
+# 1396000 |  0   |     1      1    1  |   x
+# 1396000 |  1   |     1      1    1  |   x
+# 1396000 |  2   |     1      1    1  |   x
+# 1396000 |  3   |     1      1    1  |   x
+# --------------------------------------------------
+# 1406000 |  0   |     1      1    1  |   x
+# 1406000 |  1   |     1      1    1  |   x
+# 1406000 |  2   |     1      1    1  |   x
+# 1406000 |  3   |     1      1    1  |   x
+# --------------------------------------------------
+# 1416000 |  0   |     1      1    1  |   x
+# 1416000 |  1   |     1      1    1  |   x
+# 1416000 |  2   |     1      1    1  |   x
+# 1416000 |  3   |     1      1    1  |   x
+# --------------------------------------------------
+# 1426000 |  0   |     1      1    1  |   x
+# 1426000 |  1   |     1      1    1  |   x
+# 1426000 |  2   |     1      1    1  |   x
+# 1426000 |  3   |     1      1    1  |   x
+# --------------------------------------------------
+# 1436000 |  0   |     1      1    1  |   x
+# 1436000 |  1   |     1      1    1  |   x
+# 1436000 |  2   |     1      1    1  |   x
+# 1436000 |  3   |     1      1    1  |   x
+# --------------------------------------------------
+# 1446000 |  0   |     1      1    1  |   x
+# 1446000 |  1   |     1      1    1  |   x
+# 1446000 |  2   |     1      1    1  |   x
+# 1446000 |  3   |     1      1    1  |   x
+# --------------------------------------------------
+# 1456000 |  0   |     1      1    1  |   x
+# 1456000 |  1   |     1      1    1  |   x
+# 1456000 |  2   |     1      1    1  |   x
+# 1456000 |  3   |     1      1    1  |   x
+# --------------------------------------------------
+# OK: escritos 65536 pixels. PGM salvo: out_256x256_Lena_TopConvP4.pgm
+# ** Note: $finish    : C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22/Top_conv_p_tf.v(194)
+#    Time: 163905 ns  Iteration: 1  Instance: /tb_Top_conv_p4
+# 1
+# Break in Module tb_Top_conv_p4 at C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22/Top_conv_p_tf.v line 194
+# Compile of valid_delay.v was successful.
+# Compile of Conv_3x3.v was successful.
+# Compile of linerr_buff_3x3.v was successful.
+# Compile of Top_conv_p.v was successful.
+# Compile of Top_conv_p_tf.v was successful.
+# 5 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility. The +acc switch would be deprecated in a future release.
+# ** Warning: C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22/Top_conv_p_tf.v(37): (vopt-2685) [TFMPC] - Too few port connections for 'DUT'.  Expected 16, found 15.
+# ** Warning: C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22/Top_conv_p_tf.v(37): (vopt-2718) [TFMPC] - Missing connection for port 'win_valid_vec'.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=3.
+# Loading work.tb_Top_conv_p4(fast)
+# Loading work.Top_conv_p(fast)
+# Loading work.linebuf3x3_win_p(fast)
+# Loading work.conv3x3_pipe(fast)
+# Loading work.valid_delay(fast)
+run
+# 
+# --- MONITOR (CONV_LAT=2) ---
+# t(ns)   | lane | win_valid exp_q out_q | out_pix
+# 1386000 |  0   |     1      1    1  |   14
+# 1386000 |  1   |     1      1    1  |   6
+# 1386000 |  2   |     1      1    1  |   32
+# 1386000 |  3   |     1      1    1  |   32
+# --------------------------------------------------
+# 1396000 |  0   |     1      1    1  |   2
+# 1396000 |  1   |     1      1    1  |   22
+# 1396000 |  2   |     1      1    1  |   36
+# 1396000 |  3   |     1      1    1  |   0
+# --------------------------------------------------
+# 1406000 |  0   |     1      1    1  |   10
+# 1406000 |  1   |     1      1    1  |   14
+# 1406000 |  2   |     1      1    1  |   20
+# 1406000 |  3   |     1      1    1  |   56
+# --------------------------------------------------
+# 1416000 |  0   |     1      1    1  |   80
+# 1416000 |  1   |     1      1    1  |   88
+# 1416000 |  2   |     1      1    1  |   116
+# 1416000 |  3   |     1      1    1  |   124
+# --------------------------------------------------
+# 1426000 |  0   |     1      1    1  |   88
+# 1426000 |  1   |     1      1    1  |   58
+# 1426000 |  2   |     1      1    1  |   2
+# 1426000 |  3   |     1      1    1  |   14
+# --------------------------------------------------
+# 1436000 |  0   |     1      1    1  |   18
+# 1436000 |  1   |     1      1    1  |   32
+# 1436000 |  2   |     1      1    1  |   16
+# 1436000 |  3   |     1      1    1  |   20
+# --------------------------------------------------
+# 1446000 |  0   |     1      1    1  |   14
+# 1446000 |  1   |     1      1    1  |   16
+# 1446000 |  2   |     1      1    1  |   0
+# 1446000 |  3   |     1      1    1  |   16
+# --------------------------------------------------
+# 1456000 |  0   |     1      1    1  |   12
+# 1456000 |  1   |     1      1    1  |   8
+# 1456000 |  2   |     1      1    1  |   18
+# 1456000 |  3   |     1      1    1  |   2
+# --------------------------------------------------
+# OK: escritos 65536 pixels. PGM salvo: out_256x256_Lena_TopConvP4.pgm
+# ** Note: $finish    : C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22/Top_conv_p_tf.v(194)
+#    Time: 163905 ns  Iteration: 1  Instance: /tb_Top_conv_p4
+# 1
+# Break in Module tb_Top_conv_p4 at C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22/Top_conv_p_tf.v line 194
+# Compile of valid_delay.v was successful.
+# Compile of Conv_3x3.v was successful.
+# Compile of linerr_buff_3x3.v was successful.
+# Compile of Top_conv_p.v was successful.
+# Compile of Top_conv_p_tf.v was successful.
+# 5 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Note: (vsim-8009) Loading existing optimized design _opt
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=3.
+# Loading work.tb_Top_conv_p4(fast)
+# Loading work.Top_conv_p(fast)
+# Loading work.linebuf3x3_win_p(fast)
+# Loading work.conv3x3_pipe(fast)
+# Loading work.valid_delay(fast)
+run
+# 
+# --- MONITOR (CONV_LAT=2) ---
+# t(ns)   | lane | win_valid exp_q out_q | out_pix
+# 1386000 |  0   |     1      1    1  |   14
+# 1386000 |  1   |     1      1    1  |   6
+# 1386000 |  2   |     1      1    1  |   32
+# 1386000 |  3   |     1      1    1  |   32
+# --------------------------------------------------
+# 1396000 |  0   |     1      1    1  |   2
+# 1396000 |  1   |     1      1    1  |   22
+# 1396000 |  2   |     1      1    1  |   36
+# 1396000 |  3   |     1      1    1  |   0
+# --------------------------------------------------
+# 1406000 |  0   |     1      1    1  |   10
+# 1406000 |  1   |     1      1    1  |   14
+# 1406000 |  2   |     1      1    1  |   20
+# 1406000 |  3   |     1      1    1  |   56
+# --------------------------------------------------
+# 1416000 |  0   |     1      1    1  |   80
+# 1416000 |  1   |     1      1    1  |   88
+# 1416000 |  2   |     1      1    1  |   116
+# 1416000 |  3   |     1      1    1  |   124
+# --------------------------------------------------
+# 1426000 |  0   |     1      1    1  |   88
+# 1426000 |  1   |     1      1    1  |   58
+# 1426000 |  2   |     1      1    1  |   2
+# 1426000 |  3   |     1      1    1  |   14
+# --------------------------------------------------
+# 1436000 |  0   |     1      1    1  |   18
+# 1436000 |  1   |     1      1    1  |   32
+# 1436000 |  2   |     1      1    1  |   16
+# 1436000 |  3   |     1      1    1  |   20
+# --------------------------------------------------
+# 1446000 |  0   |     1      1    1  |   14
+# 1446000 |  1   |     1      1    1  |   16
+# 1446000 |  2   |     1      1    1  |   0
+# 1446000 |  3   |     1      1    1  |   16
+# --------------------------------------------------
+# 1456000 |  0   |     1      1    1  |   12
+# 1456000 |  1   |     1      1    1  |   8
+# 1456000 |  2   |     1      1    1  |   18
+# 1456000 |  3   |     1      1    1  |   2
+# --------------------------------------------------
+# OK: escritos 65536 pixels. PGM salvo: out_256x256_Lena_TopConvP4.pgm
+# ** Note: $finish    : C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22/Top_conv_p_tf.v(194)
+#    Time: 163905 ns  Iteration: 1  Instance: /tb_Top_conv_p4
+# 1
+# Break in Module tb_Top_conv_p4 at C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22/Top_conv_p_tf.v line 194
+# Compile of valid_delay.v was successful.
+# Compile of Conv_3x3.v was successful.
+# Compile of linerr_buff_3x3.v was successful.
+# Compile of Top_conv_p.v was successful.
+# Compile of Top_conv_p_tf.v failed with 1 errors.
+# 5 compiles, 1 failed with 1 error.
+# Compile of valid_delay.v was successful.
+# Compile of Conv_3x3.v was successful.
+# Compile of linerr_buff_3x3.v was successful.
+# Compile of Top_conv_p.v was successful.
+# Compile of Top_conv_p_tf.v was successful.
+# 5 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility. The +acc switch would be deprecated in a future release.
+# ** Warning: C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22/Top_conv_p_tf.v(37): (vopt-2685) [TFMPC] - Too few port connections for 'DUT'.  Expected 16, found 15.
+# ** Warning: C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22/Top_conv_p_tf.v(37): (vopt-2718) [TFMPC] - Missing connection for port 'win_valid_vec'.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=3.
+# Loading work.tb_Top_conv_p4(fast)
+# Loading work.Top_conv_p(fast)
+# Loading work.linebuf3x3_win_p(fast)
+# Loading work.conv3x3_pipe(fast)
+# Loading work.valid_delay(fast)
+run
+# OK: escritos 65536 pixels. PGM salvo: out_256x256_Lena_TopConvP4.pgm
+# ** Note: $finish    : C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22/Top_conv_p_tf.v(153)
+#    Time: 163905 ns  Iteration: 1  Instance: /tb_Top_conv_p4
+# 1
+# Break in Module tb_Top_conv_p4 at C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22/Top_conv_p_tf.v line 153
+# Compile of valid_delay.v was successful.
+# Compile of Conv_3x3.v was successful.
+# Compile of linerr_buff_3x3.v was successful.
+# Compile of Top_conv_p.v was successful.
+# Compile of Top_conv_p_tf.v was successful.
+# 5 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility. The +acc switch would be deprecated in a future release.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading work.tb_Top_conv_p4(fast)
+# Loading work.Top_conv_p(fast)
+# Loading work.linebuf3x3_win_p(fast)
+# Loading work.conv3x3_pipe(fast)
+# Loading work.valid_delay(fast)
+run
+# OK: escritos 65536 pixels. PGM salvo: out_256x256_Lena_TopConvP4.pgm
+# ** Note: $finish    : C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22/Top_conv_p_tf.v(153)
+#    Time: 163905 ns  Iteration: 1  Instance: /tb_Top_conv_p4
+# 1
+# Break in Module tb_Top_conv_p4 at C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22/Top_conv_p_tf.v line 153
+# Compile of valid_delay.v was successful.
+# Compile of Conv_3x3.v was successful.
+# Compile of linerr_buff_3x3.v was successful.
+# Compile of Top_conv_p.v was successful.
+# Compile of Top_conv_p_tf.v was successful.
+# 5 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility. The +acc switch would be deprecated in a future release.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading work.tb_Top_conv_p4(fast)
+# Loading work.Top_conv_p(fast)
+# Loading work.linebuf3x3_win_p(fast)
+# Loading work.conv3x3_pipe(fast)
+# Loading work.valid_delay(fast)
+run
+# OK: escritos 65536 pixels. PGM salvo: out_256x256_Lena_TopConvP4.pgm
+# ** Note: $finish    : C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22/Top_conv_p_tf.v(153)
+#    Time: 163905 ns  Iteration: 1  Instance: /tb_Top_conv_p4
+# 1
+# Break in Module tb_Top_conv_p4 at C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22/Top_conv_p_tf.v line 153
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Note: (vsim-8009) Loading existing optimized design _opt
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading work.tb_Top_conv_p4(fast)
+# Loading work.Top_conv_p(fast)
+# Loading work.linebuf3x3_win_p(fast)
+# Loading work.conv3x3_pipe(fast)
+# Loading work.valid_delay(fast)
+# Compile of valid_delay.v was successful.
+# Compile of Conv_3x3.v was successful.
+# Compile of linerr_buff_3x3.v was successful.
+# Compile of Top_conv_p.v was successful.
+# Compile of Top_conv_p_tf.v was successful.
+# 5 compiles, 0 failed with no errors.
+run
+# OK: escritos 65536 pixels. PGM salvo: out_256x256_Lena_TopConvP4.pgm
+# ** Note: $finish    : C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22/Top_conv_p_tf.v(153)
+#    Time: 163905 ns  Iteration: 1  Instance: /tb_Top_conv_p4
+# 1
+# Break in Module tb_Top_conv_p4 at C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22/Top_conv_p_tf.v line 153
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility. The +acc switch would be deprecated in a future release.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading work.tb_Top_conv_p4(fast)
+# Loading work.Top_conv_p(fast)
+# Loading work.linebuf3x3_win_p(fast)
+# Loading work.conv3x3_pipe(fast)
+# Loading work.valid_delay(fast)
+# Compile of valid_delay.v was successful.
+# Compile of Conv_3x3.v was successful.
+# Compile of linerr_buff_3x3.v was successful.
+# Compile of Top_conv_p.v was successful.
+# Compile of Top_conv_p_tf.v was successful.
+# 5 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility. The +acc switch would be deprecated in a future release.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading work.tb_Top_conv_p4(fast)
+# Loading work.Top_conv_p(fast)
+# Loading work.linebuf3x3_win_p(fast)
+# Loading work.conv3x3_pipe(fast)
+# Loading work.valid_delay(fast)
+run
+# OK: escritos 65536 pixels. PGM salvo: out_256x256_Lena_TopConvP4.pgm
+# ** Note: $finish    : C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22/Top_conv_p_tf.v(153)
+#    Time: 163905 ns  Iteration: 1  Instance: /tb_Top_conv_p4
+# 1
+# Break in Module tb_Top_conv_p4 at C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22/Top_conv_p_tf.v line 153
+# Compile of valid_delay.v was successful.
+# Compile of Conv_3x3.v was successful.
+# Compile of linerr_buff_3x3.v was successful.
+# Compile of Top_conv_p.v was successful.
+# Compile of Top_conv_p_tf.v was successful.
+# 5 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility. The +acc switch would be deprecated in a future release.
+# ** Warning: C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22/Top_conv_p_tf.v(41): (vopt-2685) [TFMPC] - Too few port connections for 'DUT'.  Expected 16, found 15.
+# ** Warning: C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22/Top_conv_p_tf.v(41): (vopt-2718) [TFMPC] - Missing connection for port 'win_valid_vec'.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=3.
+# Loading work.tb_Top_conv_p4(fast)
+# Loading work.Top_conv_p(fast)
+# Loading work.linebuf3x3_win_p(fast)
+# Loading work.conv3x3_pipe(fast)
+# Loading work.valid_delay(fast)
+# Warning in wave window restart: (vish-4014) No objects found matching '/tb_Top_conv_p4/winv_d0'. 
+# Warning in wave window restart: (vish-4014) No objects found matching '/tb_Top_conv_p4/winv_d1'. 
+# Warning in wave window restart: (vish-4014) No objects found matching '/tb_Top_conv_p4/exp_q'. 
+# Warning in wave window restart: (vish-4014) No objects found matching '/tb_Top_conv_p4/out_q'. 
+# Warning in wave window restart: (vish-4014) No objects found matching '/tb_Top_conv_p4/v_expect_mon_w'. 
+# Warning in wave window restart: (vish-4014) No objects found matching '/tb_Top_conv_p4/mi'. 
+run
+# OK: escritos 65536 pixels. PGM salvo: out_256x256_Lena_TopConvP4.pgm
+# ** Note: $finish    : C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22/Top_conv_p_tf.v(124)
+#    Time: 655425 ns  Iteration: 1  Instance: /tb_Top_conv_p4
+# 1
+# Break in Module tb_Top_conv_p4 at C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22/Top_conv_p_tf.v line 124
+# Compile of valid_delay.v was successful.
+# Compile of Conv_3x3.v was successful.
+# Compile of linerr_buff_3x3.v was successful.
+# Compile of Top_conv_p.v was successful.
+# Compile of Top_conv_p_tf.v was successful.
+# 5 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Note: (vsim-8009) Loading existing optimized design _opt
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=3.
+# Loading work.tb_Top_conv_p4(fast)
+# Loading work.Top_conv_p(fast)
+# Loading work.linebuf3x3_win_p(fast)
+# Loading work.conv3x3_pipe(fast)
+# Loading work.valid_delay(fast)
+run
+# OK: escritos 65536 pixels. PGM salvo: out_256x256_Lena_TopConvP4.pgm
+# ** Note: $finish    : C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22/Top_conv_p_tf.v(124)
+#    Time: 655425 ns  Iteration: 1  Instance: /tb_Top_conv_p4
+# 1
+# Break in Module tb_Top_conv_p4 at C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22/Top_conv_p_tf.v line 124
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Note: (vsim-8009) Loading existing optimized design _opt
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=3.
+# Loading work.tb_Top_conv_p4(fast)
+# Loading work.Top_conv_p(fast)
+# Loading work.linebuf3x3_win_p(fast)
+# Loading work.conv3x3_pipe(fast)
+# Loading work.valid_delay(fast)
+# Compile of valid_delay.v was successful.
+# Compile of Conv_3x3.v was successful.
+# Compile of linerr_buff_3x3.v was successful.
+# Compile of Top_conv_p.v was successful.
+# Compile of Top_conv_p_tf.v was successful.
+# 5 compiles, 0 failed with no errors.
+run
+# OK: escritos 65536 pixels. PGM salvo: out_256x256_Lena_TopConvP4.pgm
+# ** Note: $finish    : C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22/Top_conv_p_tf.v(124)
+#    Time: 655425 ns  Iteration: 1  Instance: /tb_Top_conv_p4
+# 1
+# Break in Module tb_Top_conv_p4 at C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22/Top_conv_p_tf.v line 124
+# Compile of valid_delay.v was successful.
+# Compile of Conv_3x3.v was successful.
+# Compile of linerr_buff_3x3.v was successful.
+# Compile of Top_conv_p.v was successful.
+# Compile of Top_conv_p_tf.v was successful.
+# 5 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility. The +acc switch would be deprecated in a future release.
+# ** Warning: C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22/Top_conv_p_tf.v(41): (vopt-2685) [TFMPC] - Too few port connections for 'DUT'.  Expected 16, found 15.
+# ** Warning: C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22/Top_conv_p_tf.v(41): (vopt-2718) [TFMPC] - Missing connection for port 'win_valid_vec'.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=3.
+# Loading work.tb_Top_conv_p4(fast)
+# Loading work.Top_conv_p(fast)
+# Loading work.linebuf3x3_win_p(fast)
+# Loading work.conv3x3_pipe(fast)
+# Loading work.valid_delay(fast)
+run
+# OK: escritos 65536 pixels. PGM salvo: out_256x256_Lena_TopConvP4.pgm
+# ** Note: $finish    : C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22/Top_conv_p_tf.v(124)
+#    Time: 163905 ns  Iteration: 1  Instance: /tb_Top_conv_p4
+# 1
+# Break in Module tb_Top_conv_p4 at C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22/Top_conv_p_tf.v line 124
+# Compile of valid_delay.v was successful.
+# Compile of Conv_3x3.v was successful.
+# Compile of linerr_buff_3x3.v was successful.
+# Compile of Top_conv_p.v was successful.
+# Compile of Top_conv_p_tf.v was successful.
+# 5 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility. The +acc switch would be deprecated in a future release.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading work.tb_Top_conv_p4(fast)
+# Loading work.Top_conv_p(fast)
+# Loading work.linebuf3x3_win_p(fast)
+# Loading work.conv3x3_pipe(fast)
+# Loading work.valid_delay(fast)
+run
+# OK: escritos 65536 pixels. PGM salvo: out_256x256_Lena_TopConvP4.pgm
+# ** Note: $finish    : C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22/Top_conv_p_tf.v(124)
+#    Time: 163905 ns  Iteration: 1  Instance: /tb_Top_conv_p4
+# 1
+# Break in Module tb_Top_conv_p4 at C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22/Top_conv_p_tf.v line 124
+# Compile of valid_delay.v was successful.
+# Compile of Conv_3x3.v was successful.
+# Compile of linerr_buff_3x3.v was successful.
+# Compile of Top_conv_p.v was successful.
+# Compile of Top_conv_p_tf.v was successful.
+# 5 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility. The +acc switch would be deprecated in a future release.
+# ** Warning: C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22/Top_conv_p_tf.v(41): (vopt-2685) [TFMPC] - Too few port connections for 'DUT'.  Expected 16, found 15.
+# ** Warning: C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22/Top_conv_p_tf.v(41): (vopt-2718) [TFMPC] - Missing connection for port 'win_valid_vec'.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=3.
+# Loading work.tb_Top_conv_p4(fast)
+# Loading work.Top_conv_p(fast)
+# Loading work.linebuf3x3_win_p(fast)
+# Loading work.conv3x3_pipe(fast)
+# Loading work.valid_delay(fast)
+run
+# OK: escritos 65536 pixels. PGM salvo: out_256x256_Lena_TopConvP4.pgm
+# ** Note: $finish    : C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22/Top_conv_p_tf.v(124)
+#    Time: 655425 ns  Iteration: 1  Instance: /tb_Top_conv_p4
+# 1
+# Break in Module tb_Top_conv_p4 at C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22/Top_conv_p_tf.v line 124
+# End time: 17:35:25 on Sep 10,2025, Elapsed time: 18:08:49
+# Errors: 0, Warnings: 4

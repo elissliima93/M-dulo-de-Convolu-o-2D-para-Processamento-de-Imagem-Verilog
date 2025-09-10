@@ -1,0 +1,49 @@
+----------------------------------------------------------------------
+Report for cell Top_conv_p.TECH
+Register bits:  225 of 44457 (0.506%)
+I/O cells:      93
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                              CCU2C       145          100.0
+                             DP16KD         3          100.0
+                            FD1P3IX        72          100.0
+                            FD1S3AX       105          100.0
+                            FD1S3IX        48          100.0
+                                GSR         1          100.0
+                                 IB        83          100.0
+                               LUT4       112          100.0
+                           MULT9X9D         9          100.0
+                                 OB        10          100.0
+SUB MODULES
+                       conv3x3_pipe         1
+              linebuf3x3_win_p(P=1)         1
+                   valid_delay(N=2)         1
+                              TOTAL       591
+----------------------------------------------------------------------
+Report for cell linebuf3x3_win_p(P=1).v1
+Instance Path : u_win
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                              CCU2C         3            2.1
+                             DP16KD         3          100.0
+                            FD1P3IX        72          100.0
+                            FD1S3AX        67           63.8
+                            FD1S3IX         1            2.1
+                               LUT4        79           70.5
+                              TOTAL       225
+----------------------------------------------------------------------
+Report for cell conv3x3_pipe.v1
+Instance Path : G_LANE[0].u_conv3x3
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                            FD1S3IX        28           58.3
+                               LUT4        20           17.9
+                           MULT9X9D         9          100.0
+                              TOTAL        57
+----------------------------------------------------------------------
+Report for cell valid_delay(N=2).v1
+Instance Path : G_LANE[0].u_vd
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                            FD1S3IX         2            4.2
+                              TOTAL         2
