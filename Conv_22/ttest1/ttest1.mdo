@@ -1,0 +1,23 @@
+if {![file exists "C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22/ttest1/ttest1.mpf"]} { 
+	project new "C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22/ttest1" ttest1
+	project addfile "C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22/valid_delay.v"
+	project addfile "C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22/Conv_3x3.v"
+	project addfile "C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22/linerr_buff_3x3.v"
+	project addfile "C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22/Top_conv_p.v"
+	project addfile "C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22/Top_conv_p_tf.v"
+	vlib  work
+	vdel -lib work -all 
+	vlib work
+	vlog  +incdir+C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22  -work work  "C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22/valid_delay.v"
+	vlog  +incdir+C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22  -work work  "C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22/Conv_3x3.v"
+	vlog  +incdir+C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22  -work work  "C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22/linerr_buff_3x3.v"
+	vlog  +incdir+C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22  -work work  "C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22/Top_conv_p.v"
+	vlog  +incdir+C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22  -work work  "C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22/Top_conv_p_tf.v"
+} else {
+	project open "C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22/ttest1/ttest1"
+	project compileoutofdate
+}
+vsim -voptargs=+acc -L work -L pmi_work -L ovi_ecp5u  tb_Top_conv_p4
+view wave
+add wave /*
+run 1000ns

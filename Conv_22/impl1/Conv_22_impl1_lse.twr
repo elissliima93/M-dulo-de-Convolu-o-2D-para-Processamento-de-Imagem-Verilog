@@ -1,0 +1,309 @@
+--------------------------------------------------------------------------------
+Lattice Synthesis Timing Report, Version  
+Wed Sep 10 11:01:39 2025
+
+Copyright (c) 1991-1994 by NeoCAD Inc. All rights reserved.
+Copyright (c) 1995 AT&T Corp.   All rights reserved.
+Copyright (c) 1995-2001 Lucent Technologies Inc.  All rights reserved.
+Copyright (c) 2001 Agere Systems   All rights reserved.
+Copyright (c) 2002-2024 Lattice Semiconductor Corporation,  All rights reserved.
+
+Report Information
+------------------
+Design:     Top_conv_p
+Constraint file:  
+Report level:    verbose report, limited to 3 items per constraint
+--------------------------------------------------------------------------------
+
+
+
+================================================================================
+Constraint: create_clock -period 5.000000 -name clk0 [get_nets clk_c]
+            4096 items scored, 4096 timing errors detected.
+--------------------------------------------------------------------------------
+
+
+Error:  The following path violates requirements by 5.527ns
+
+ Logical Details:  Cell type  Pin type       Cell name  (clock net +/-)
+
+   Source:         FD1S3IX    CK             \G_LANE[0].u_conv3x3/s_s2__i0  (from clk_c +)
+   Destination:    FD1S3IX    D              \G_LANE[0].u_conv3x3/out_pix__i2  (to clk_c +)
+
+   Delay:                  10.702ns  (24.6% logic, 75.4% route), 15 logic levels.
+
+ Constraint Details:
+
+     10.702ns data_path \G_LANE[0].u_conv3x3/s_s2__i0 to \G_LANE[0].u_conv3x3/out_pix__i2 violates
+      5.000ns delay constraint less
+     -0.175ns L_S requirement (totaling 5.175ns) by 5.527ns
+
+ Path Details: \G_LANE[0].u_conv3x3/s_s2__i0 to \G_LANE[0].u_conv3x3/out_pix__i2
+
+   Name    Fanout   Delay (ns)          Pins               Resource(Cell.Net)
+L_CO        ---     0.365             CK to Q              \G_LANE[0].u_conv3x3/s_s2__i0 (from clk_c)
+Route         1   e 1.020                                  s_s2[0]
+A1_TO_FCO   ---     0.329           B[2] to COUT           _add_1_998_add_4_1
+Route         1   e 0.020                                  n17076
+FCI_TO_F    ---     0.322            CIN to S[2]           _add_1_998_add_4_3
+Route         2   e 1.258                                  n93_adj_1648
+LUT4        ---     0.166              B to Z              \G_LANE[0].u_conv3x3/mux_329_i1_3_lut
+Route         1   e 1.020                                  n804
+A1_TO_FCO   ---     0.329           D[2] to COUT           _add_1_1051_add_4_3
+Route         1   e 0.020                                  n17229
+FCI_TO_FCO  ---     0.051            CIN to COUT           _add_1_1051_add_4_5
+Route         1   e 0.020                                  n17230
+FCI_TO_FCO  ---     0.051            CIN to COUT           _add_1_1051_add_4_7
+Route         1   e 0.020                                  n17231
+FCI_TO_FCO  ---     0.051            CIN to COUT           _add_1_1051_add_4_9
+Route         1   e 0.020                                  n17232
+FCI_TO_FCO  ---     0.051            CIN to COUT           _add_1_1051_add_4_11
+Route         1   e 0.020                                  n17233
+FCI_TO_FCO  ---     0.051            CIN to COUT           _add_1_1051_add_4_13
+Route         1   e 0.020                                  n17234
+FCI_TO_FCO  ---     0.051            CIN to COUT           _add_1_1051_add_4_15
+Route         1   e 0.020                                  n17235
+FCI_TO_F    ---     0.322            CIN to S[2]           _add_1_1051_add_4_17
+Route         1   e 1.020                                  n41_adj_1867
+LUT4        ---     0.166              A to Z              \G_LANE[0].u_conv3x3/i1_4_lut_adj_47
+Route         2   e 1.158                                  \G_LANE[0].u_conv3x3/n17
+LUT4        ---     0.166              C to Z              \G_LANE[0].u_conv3x3/i1_2_lut_3_lut
+Route         7   e 1.409                                  \G_LANE[0].u_conv3x3/n18089
+LUT4        ---     0.166              A to Z              \G_LANE[0].u_conv3x3/i1_4_lut_adj_48
+Route         1   e 1.020                                  \G_LANE[0].u_conv3x3/out_pix_7__N_1183[1]
+                  --------
+                   10.702  (24.6% logic, 75.4% route), 15 logic levels.
+
+
+Error:  The following path violates requirements by 5.527ns
+
+ Logical Details:  Cell type  Pin type       Cell name  (clock net +/-)
+
+   Source:         FD1S3IX    CK             \G_LANE[0].u_conv3x3/s_s2__i0  (from clk_c +)
+   Destination:    FD1S3IX    D              \G_LANE[0].u_conv3x3/out_pix__i3  (to clk_c +)
+
+   Delay:                  10.702ns  (24.6% logic, 75.4% route), 15 logic levels.
+
+ Constraint Details:
+
+     10.702ns data_path \G_LANE[0].u_conv3x3/s_s2__i0 to \G_LANE[0].u_conv3x3/out_pix__i3 violates
+      5.000ns delay constraint less
+     -0.175ns L_S requirement (totaling 5.175ns) by 5.527ns
+
+ Path Details: \G_LANE[0].u_conv3x3/s_s2__i0 to \G_LANE[0].u_conv3x3/out_pix__i3
+
+   Name    Fanout   Delay (ns)          Pins               Resource(Cell.Net)
+L_CO        ---     0.365             CK to Q              \G_LANE[0].u_conv3x3/s_s2__i0 (from clk_c)
+Route         1   e 1.020                                  s_s2[0]
+A1_TO_FCO   ---     0.329           B[2] to COUT           _add_1_998_add_4_1
+Route         1   e 0.020                                  n17076
+FCI_TO_F    ---     0.322            CIN to S[2]           _add_1_998_add_4_3
+Route         2   e 1.258                                  n93_adj_1648
+LUT4        ---     0.166              B to Z              \G_LANE[0].u_conv3x3/mux_329_i1_3_lut
+Route         1   e 1.020                                  n804
+A1_TO_FCO   ---     0.329           D[2] to COUT           _add_1_1051_add_4_3
+Route         1   e 0.020                                  n17229
+FCI_TO_FCO  ---     0.051            CIN to COUT           _add_1_1051_add_4_5
+Route         1   e 0.020                                  n17230
+FCI_TO_FCO  ---     0.051            CIN to COUT           _add_1_1051_add_4_7
+Route         1   e 0.020                                  n17231
+FCI_TO_FCO  ---     0.051            CIN to COUT           _add_1_1051_add_4_9
+Route         1   e 0.020                                  n17232
+FCI_TO_FCO  ---     0.051            CIN to COUT           _add_1_1051_add_4_11
+Route         1   e 0.020                                  n17233
+FCI_TO_FCO  ---     0.051            CIN to COUT           _add_1_1051_add_4_13
+Route         1   e 0.020                                  n17234
+FCI_TO_FCO  ---     0.051            CIN to COUT           _add_1_1051_add_4_15
+Route         1   e 0.020                                  n17235
+FCI_TO_F    ---     0.322            CIN to S[2]           _add_1_1051_add_4_17
+Route         1   e 1.020                                  n41_adj_1867
+LUT4        ---     0.166              A to Z              \G_LANE[0].u_conv3x3/i1_4_lut_adj_47
+Route         2   e 1.158                                  \G_LANE[0].u_conv3x3/n17
+LUT4        ---     0.166              C to Z              \G_LANE[0].u_conv3x3/i1_2_lut_3_lut
+Route         7   e 1.409                                  \G_LANE[0].u_conv3x3/n18089
+LUT4        ---     0.166              A to Z              \G_LANE[0].u_conv3x3/i1_4_lut_adj_50
+Route         1   e 1.020                                  \G_LANE[0].u_conv3x3/out_pix_7__N_1183[2]
+                  --------
+                   10.702  (24.6% logic, 75.4% route), 15 logic levels.
+
+
+Error:  The following path violates requirements by 5.527ns
+
+ Logical Details:  Cell type  Pin type       Cell name  (clock net +/-)
+
+   Source:         FD1S3IX    CK             \G_LANE[0].u_conv3x3/s_s2__i0  (from clk_c +)
+   Destination:    FD1S3IX    D              \G_LANE[0].u_conv3x3/out_pix__i4  (to clk_c +)
+
+   Delay:                  10.702ns  (24.6% logic, 75.4% route), 15 logic levels.
+
+ Constraint Details:
+
+     10.702ns data_path \G_LANE[0].u_conv3x3/s_s2__i0 to \G_LANE[0].u_conv3x3/out_pix__i4 violates
+      5.000ns delay constraint less
+     -0.175ns L_S requirement (totaling 5.175ns) by 5.527ns
+
+ Path Details: \G_LANE[0].u_conv3x3/s_s2__i0 to \G_LANE[0].u_conv3x3/out_pix__i4
+
+   Name    Fanout   Delay (ns)          Pins               Resource(Cell.Net)
+L_CO        ---     0.365             CK to Q              \G_LANE[0].u_conv3x3/s_s2__i0 (from clk_c)
+Route         1   e 1.020                                  s_s2[0]
+A1_TO_FCO   ---     0.329           B[2] to COUT           _add_1_998_add_4_1
+Route         1   e 0.020                                  n17076
+FCI_TO_F    ---     0.322            CIN to S[2]           _add_1_998_add_4_3
+Route         2   e 1.258                                  n93_adj_1648
+LUT4        ---     0.166              B to Z              \G_LANE[0].u_conv3x3/mux_329_i1_3_lut
+Route         1   e 1.020                                  n804
+A1_TO_FCO   ---     0.329           D[2] to COUT           _add_1_1051_add_4_3
+Route         1   e 0.020                                  n17229
+FCI_TO_FCO  ---     0.051            CIN to COUT           _add_1_1051_add_4_5
+Route         1   e 0.020                                  n17230
+FCI_TO_FCO  ---     0.051            CIN to COUT           _add_1_1051_add_4_7
+Route         1   e 0.020                                  n17231
+FCI_TO_FCO  ---     0.051            CIN to COUT           _add_1_1051_add_4_9
+Route         1   e 0.020                                  n17232
+FCI_TO_FCO  ---     0.051            CIN to COUT           _add_1_1051_add_4_11
+Route         1   e 0.020                                  n17233
+FCI_TO_FCO  ---     0.051            CIN to COUT           _add_1_1051_add_4_13
+Route         1   e 0.020                                  n17234
+FCI_TO_FCO  ---     0.051            CIN to COUT           _add_1_1051_add_4_15
+Route         1   e 0.020                                  n17235
+FCI_TO_F    ---     0.322            CIN to S[2]           _add_1_1051_add_4_17
+Route         1   e 1.020                                  n41_adj_1867
+LUT4        ---     0.166              A to Z              \G_LANE[0].u_conv3x3/i1_4_lut_adj_47
+Route         2   e 1.158                                  \G_LANE[0].u_conv3x3/n17
+LUT4        ---     0.166              C to Z              \G_LANE[0].u_conv3x3/i1_2_lut_3_lut
+Route         7   e 1.409                                  \G_LANE[0].u_conv3x3/n18089
+LUT4        ---     0.166              A to Z              \G_LANE[0].u_conv3x3/i1_4_lut_adj_52
+Route         1   e 1.020                                  \G_LANE[0].u_conv3x3/out_pix_7__N_1183[3]
+                  --------
+                   10.702  (24.6% logic, 75.4% route), 15 logic levels.
+
+Warning: 10.527 ns is the maximum delay for this constraint.
+
+
+Timing Report Summary
+--------------
+--------------------------------------------------------------------------------
+Constraint                              |   Constraint|       Actual|Levels
+--------------------------------------------------------------------------------
+                                        |             |             |
+create_clock -period 5.000000 -name     |             |             |
+clk0 [get_nets clk_c]                   |     5.000 ns|    10.527 ns|    15 *
+                                        |             |             |
+--------------------------------------------------------------------------------
+
+
+1 constraints not met.
+
+--------------------------------------------------------------------------------
+Critical Nets                           |   Loads|  Errors| % of total
+--------------------------------------------------------------------------------
+\G_LANE[0].u_conv3x3/n17                |       2|    1024|     25.00%
+                                        |        |        |
+\G_LANE[0].u_conv3x3/n18089             |       7|    1024|     25.00%
+                                        |        |        |
+\G_LANE[1].u_conv3x3/n17                |       2|    1024|     25.00%
+                                        |        |        |
+\G_LANE[1].u_conv3x3/n18109             |       7|    1024|     25.00%
+                                        |        |        |
+\G_LANE[2].u_conv3x3/n17                |       2|    1024|     25.00%
+                                        |        |        |
+\G_LANE[2].u_conv3x3/n18041             |       7|    1024|     25.00%
+                                        |        |        |
+\G_LANE[3].u_conv3x3/n17                |       2|    1024|     25.00%
+                                        |        |        |
+\G_LANE[3].u_conv3x3/n18153             |       7|    1024|     25.00%
+                                        |        |        |
+n93_adj_1648                            |       2|    1024|     25.00%
+                                        |        |        |
+n93_adj_2114                            |       2|    1024|     25.00%
+                                        |        |        |
+n93_adj_2152                            |       2|    1024|     25.00%
+                                        |        |        |
+n93_adj_2171                            |       2|    1024|     25.00%
+                                        |        |        |
+n17154                                  |       1|     904|     22.07%
+                                        |        |        |
+n17175                                  |       1|     904|     22.07%
+                                        |        |        |
+n17207                                  |       1|     904|     22.07%
+                                        |        |        |
+n17237                                  |       1|     904|     22.07%
+                                        |        |        |
+n17155                                  |       1|     708|     17.29%
+                                        |        |        |
+n17176                                  |       1|     708|     17.29%
+                                        |        |        |
+n17208                                  |       1|     708|     17.29%
+                                        |        |        |
+n17238                                  |       1|     708|     17.29%
+                                        |        |        |
+n17149                                  |       1|     659|     16.09%
+                                        |        |        |
+n17170                                  |       1|     659|     16.09%
+                                        |        |        |
+n17191                                  |       1|     659|     16.09%
+                                        |        |        |
+n17232                                  |       1|     659|     16.09%
+                                        |        |        |
+n17148                                  |       1|     617|     15.06%
+                                        |        |        |
+n17169                                  |       1|     617|     15.06%
+                                        |        |        |
+n17190                                  |       1|     617|     15.06%
+                                        |        |        |
+n17231                                  |       1|     617|     15.06%
+                                        |        |        |
+n17150                                  |       1|     568|     13.87%
+                                        |        |        |
+n17171                                  |       1|     568|     13.87%
+                                        |        |        |
+n17192                                  |       1|     568|     13.87%
+                                        |        |        |
+n17233                                  |       1|     568|     13.87%
+                                        |        |        |
+n17021                                  |       1|     562|     13.72%
+                                        |        |        |
+n17076                                  |       1|     562|     13.72%
+                                        |        |        |
+n17097                                  |       1|     562|     13.72%
+                                        |        |        |
+n17123                                  |       1|     562|     13.72%
+                                        |        |        |
+n17156                                  |       1|     512|     12.50%
+                                        |        |        |
+n17177                                  |       1|     512|     12.50%
+                                        |        |        |
+n17209                                  |       1|     512|     12.50%
+                                        |        |        |
+n17239                                  |       1|     512|     12.50%
+                                        |        |        |
+n41_adj_1867                            |       1|     422|     10.30%
+                                        |        |        |
+n41_adj_1901                            |       1|     422|     10.30%
+                                        |        |        |
+n41_adj_1935                            |       1|     422|     10.30%
+                                        |        |        |
+n41_adj_1969                            |       1|     422|     10.30%
+                                        |        |        |
+n17147                                  |       1|     421|     10.28%
+                                        |        |        |
+n17168                                  |       1|     421|     10.28%
+                                        |        |        |
+n17189                                  |       1|     421|     10.28%
+                                        |        |        |
+n17230                                  |       1|     421|     10.28%
+                                        |        |        |
+--------------------------------------------------------------------------------
+
+
+Timing summary:
+---------------
+
+Timing errors: 4096  Score: 19791896
+
+Constraints cover  740745 paths, 10756 nets, and 26604 connections (88.8% coverage)
+
+
+Peak memory: 198221824 bytes, TRCE: 0 bytes, DLYMAN: 0 bytes
+CPU_TIME_REPORT: 0 secs 

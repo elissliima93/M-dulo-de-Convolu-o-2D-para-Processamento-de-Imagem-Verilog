@@ -1,0 +1,15 @@
+#Start recording tcl command: 9/9/2025 10:03:39
+#Project Location: C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22; Project name: Conv_22
+prj_project new -name "Conv_22" -impl "impl1" -dev LFE5U-45F-6BG381C -synthesis "lse"
+prj_project save
+prj_src add "C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22/linerr_buff_3x3.v"
+prj_src add "C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22/Top_conv_p.v"
+prj_src add "C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22/valid_delay.v"
+prj_src add "C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22/Conv_3x3.v"
+prj_run Synthesis -impl impl1 -task Lattice_Synthesis
+source "C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22/hdle_generate_tbtemplate.tcl"
+prj_src add -simulate_only "Top_conv_p_tf.v"
+prj_run Synthesis -impl impl1 -task Lattice_Synthesis
+prj_run Synthesis -impl impl1 -task Lattice_Synthesis
+prj_src add "C:/Users/KABUM/Documents/CI DIGITAL/Codigos/PROJETO/Conv_22/ttest1/ttest1.spf"
+#Stop recording: 9/9/2025 20:55:07

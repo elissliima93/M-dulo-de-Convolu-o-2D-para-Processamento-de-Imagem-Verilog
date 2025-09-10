@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BaliProject version="3.2" title="Conv_22" device="LFE5U-45F-6BG381C" default_implementation="impl1">
+    <Options/>
+    <Implementation title="impl1" dir="impl1" description="impl1" synthesis="lse" default_strategy="Strategy1">
+        <Options def_top="conv3x3_pipe"/>
+        <Source name="linerr_buff_3x3.v" type="Verilog" type_short="Verilog">
+            <Options top_module="linebuf3x3_win_p"/>
+        </Source>
+        <Source name="Top_conv_p.v" type="Verilog" type_short="Verilog">
+            <Options top_module="tb_Top_conv_p4"/>
+        </Source>
+        <Source name="valid_delay.v" type="Verilog" type_short="Verilog">
+            <Options top_module="valid_delay"/>
+        </Source>
+        <Source name="Conv_3x3.v" type="Verilog" type_short="Verilog">
+            <Options top_module="conv3x3_pipe"/>
+        </Source>
+        <Source name="Top_conv_p_tf.v" type="Verilog" type_short="Verilog" syn_sim="SimOnly">
+            <Options/>
+        </Source>
+        <Source name="Conv_22.lpf" type="Logic Preference" type_short="LPF">
+            <Options/>
+        </Source>
+        <Source name="ttest1/ttest1.spf" type="Simulation Project File" type_short="SPF">
+            <Options/>
+        </Source>
+    </Implementation>
+    <Strategy name="Strategy1" file="Conv_221.sty"/>
+</BaliProject>
