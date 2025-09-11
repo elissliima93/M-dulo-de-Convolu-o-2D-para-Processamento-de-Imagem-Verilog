@@ -32,6 +32,7 @@ parameter P = 1; // ou 4
 
 - P=1 → 1 pixel por ciclo (≈65k ciclos para 256×256)
 - P=4 → 4 pixels por ciclo (≈16k ciclos, ~4× mais rápido)
+O arquivo.hex deve ficar na mesma pasta do testbench para a leitura do mesmo (Pode se pular a etapa 1, ja usando o arquivo lena_256x256_hex.hex)
 
 ---------------------------------------------------
 
