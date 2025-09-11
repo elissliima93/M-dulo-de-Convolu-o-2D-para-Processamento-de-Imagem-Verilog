@@ -1,4 +1,7 @@
 # Modulo-de-Convoluco-2D-para-Processamento-de-Imagem-Verilog
+[Elisa_Relatório_CI_digital.pdf](https://github.com/user-attachments/files/22265839/Elisa_Relatorio_CI_digital.pdf)
+
+
 # Convolução 3x3 Parametrizada em Verilog
 
 Implementação em Verilog de uma convolução 3x3 para imagens em escala de cinza.  
