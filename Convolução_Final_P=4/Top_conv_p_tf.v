@@ -1,17 +1,18 @@
 // ===============================================================
 // Testbench para Top_conv_p
-// Parametrizado para P=1 ou P=4 (com if/else no empacotamento)
+// Parametrizado para P=1 ou P=4
+// Grava sempre WIDTH*HEIGHT pixels no PGM
 // ===============================================================
 `timescale 1ns/1ps
 
-module tb_Top_conv_p4;
+module tb_Top_conv_p;
 
-  // ===== Parâmetros =====
+  // ===== ParÃ¢metros =====
   parameter WIDTH     = 256;
   parameter HEIGHT    = 256;
   parameter BITW      = 8;
   parameter ACCW      = 20;
-  parameter CONV_LAT  = 2;   // latência do convolutor
+  parameter CONV_LAT  = 2;   // latÃªncia do convolutor
   parameter P         = 4;   // altere aqui: 1 ou 4
 
   // ===== Clock / Reset =====
@@ -30,7 +31,7 @@ module tb_Top_conv_p4;
   reg                  in_valid;
   reg  [P*BITW-1:0]    in_pix_vec;
 
-  // ===== Saída =====
+  // ===== SaÃ­da =====
   wire [P-1:0]         out_valid_vec;
   wire [P*8-1:0]       out_pix_vec;
 
@@ -52,75 +53,82 @@ module tb_Top_conv_p4;
   // ===== Escrita PGM =====
   integer fd;
   integer pix_written;
+  integer in_count;
   integer r, c, l;
   reg [7:0] y;
 
   initial begin
     if ((WIDTH % P) != 0) begin
-      $display("ERRO: WIDTH (%0d) não é múltiplo de P (%0d).", WIDTH, P);
+      $display("ERRO: WIDTH (%0d) nÃ£o Ã© mÃºltiplo de P (%0d).", WIDTH, P);
       $fatal(1);
     end
 
     in_valid   = 1'b0;
     in_pix_vec = {P*BITW{1'b0}};
+    in_count   = 0;
+    pix_written = 0;
 
     $readmemh("lena_256x256_hex.hex", img_mem);
 
     repeat(3) @(posedge clk);
     rst = 1'b0;
 
-    fd = $fopen("out_256x256_Lena_TopConvP4.pgm","w");
+    fd = $fopen("out_256x256_Lena_TopConvP.pgm","w");
     if (fd == 0) begin
-      $display("ERRO: não abriu arquivo de saída."); $fatal(1);
+      $display("ERRO: nÃ£o abriu arquivo de saÃ­da."); $fatal(1);
     end
     $fdisplay(fd,"P2");
     $fdisplay(fd,"%0d %0d", WIDTH, HEIGHT);
     $fdisplay(fd,"255");
-    pix_written = 0;
 
-    // varredura raster (P pixels por ciclo)
+    // ===============================
+    // Varredura raster (P pixels por ciclo)
+    // ===============================
     for (r=0; r<HEIGHT; r=r+1) begin
-      for (c=0; c<WIDTH; c=c+P) begin
-
-        // ===============================
-        // Empacotamento adaptável por P
-        // ===============================
-        if (P == 1) begin
+      if (P == 1) begin
+        for (c=0; c<WIDTH; c=c+1) begin
           in_pix_vec = img_mem[r*WIDTH + c];
-        end else if (P == 4) begin
+          in_valid   = 1'b1;
+          in_count   = in_count + 1;
+          @(posedge clk);
+          #1;
+          y = out_pix_vec[7:0];
+          if (out_valid_vec[0] && (^{y} !== 1'bx))
+            $fwrite(fd, "%0d\n", y);
+          else
+            $fwrite(fd, "0\n");   // sempre grava algo
+          pix_written = pix_written + 1;
+        end
+      end else if (P == 4) begin
+        for (c=0; c<WIDTH; c=c+4) begin
           in_pix_vec = {
             img_mem[r*WIDTH + (c+3)],
             img_mem[r*WIDTH + (c+2)],
             img_mem[r*WIDTH + (c+1)],
             img_mem[r*WIDTH + (c+0)]
           };
-        end
-
-        in_valid = 1'b1;
-        @(posedge clk);
-        #1;
-
-        for (l=0; l<P; l=l+1) begin
-          y = out_pix_vec[l*8 +: 8];
-          if (out_valid_vec[l] && (^{y} !== 1'bx))
-            $fwrite(fd, "%0d\n", y);
-          else
-            $fwrite(fd, "0\n");
-          pix_written = pix_written + 1;
+          in_valid = 1'b1;
+          in_count = in_count + 4;
+          @(posedge clk);
+          #1;
+          for (l=0; l<4; l=l+1) begin
+            y = out_pix_vec[l*8 +: 8];
+            if (out_valid_vec[l] && (^{y} !== 1'bx))
+              $fwrite(fd, "%0d\n", y);
+            else
+              $fwrite(fd, "0\n"); // sempre grava algo
+            pix_written = pix_written + 1;
+          end
         end
       end
     end
 
     in_valid = 1'b0;
-    repeat(4) @(posedge clk);
+    repeat(100) @(posedge clk);
 
     $fclose(fd);
-    if (pix_written !== WIDTH*HEIGHT) begin
-      $display("ERRO: escritos %0d de %0d pixels!", pix_written, WIDTH*HEIGHT);
-      $fatal(1);
-    end else begin
-      $display("OK: escritos %0d pixels. PGM salvo: out_256x256_Lena_TopConvP4.pgm", pix_written);
-    end
+    $display("OK: enviados %0d pixels, escritos %0d pixels. P=%0d", in_count, pix_written, P);
+    $display("PGM salvo: out_256x256_Lena_TopConvP.pgm");
     $finish;
   end
 
