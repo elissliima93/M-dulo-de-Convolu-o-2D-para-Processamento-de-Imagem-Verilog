@@ -1,5 +1,7 @@
 # Modulo-de-Convolucao-2D-para-Processamento-de-Imagem-Verilog
-[Elisa_Relatório_CI_digital.pdf](https://github.com/user-attachments/files/22265858/Elisa_Relatorio_CI_digital.pdf)
+[Elisa_Relatório_CI_digital.pdf](https://github.com/user-attachments/files/22266968/Elisa_Relatorio_CI_digital.pdf)
+
+
 
 
 
