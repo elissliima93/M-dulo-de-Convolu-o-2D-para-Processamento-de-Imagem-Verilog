@@ -1,11 +1,11 @@
-// Convolutor 3x3 pipelineado com latência = 2 ciclos (Sobel X)
-// Agora com rounding e ganho leve no pós-processamento
+// Convolutor 3x3 pipelineado com latÃªncia = 2 ciclos (Sobel X)
+// Agora com rounding e ganho leve no pÃ³s-processamento
 module conv3x3_pipe #(
   parameter integer BITW = 8,
   parameter integer ACCW = 20
 )(
   input  wire                     clk,
-  input  wire                     rst,       // síncrono alto
+  input  wire                     rst,       // sÃ­ncrono alto
   input  wire                     in_valid,
 
   // janela 3x3 (pixels unsigned)
@@ -74,17 +74,17 @@ module conv3x3_pipe #(
       t = s_s2;
       if (t < 0) t = -t;
 
-      // rounding + normalização (divide por 8)
+      // rounding + normalizaÃ§Ã£o (divide por 8)
       t = (t + 6'd4) >>> 3;
 
-      // ganho leve (shift à esquerda = *2)
+      // ganho leve (shift Ã  esquerda = *2)
       t = t <<< 1;
 
       // clamp 0..255
       if (t > 255) out_pix <= 8'd255;
       else         out_pix <= t[7:0];
 
-      out_valid <= v_s2;  // latência total = 2 ciclos
+      out_valid <= v_s2;  // latÃªncia total = 2 ciclos
     end
   end
 
