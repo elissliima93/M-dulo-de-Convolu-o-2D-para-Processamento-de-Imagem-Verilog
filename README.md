@@ -43,7 +43,7 @@ out_256x256_Lena_TopConvP.pgm
 ---------------------------------------------------
 
 Passo 4 — Validar saída com o Leitor
-- Use o script Leior_hex.py
+- Use o script ompare_sobelx_verilog_vs_golden.py
 - Ele realiza a validação completa:
     * Lê a entrada (.hex) e a saída do Verilog (.pgm)
     * Gera o golden Sobel-X em Python
