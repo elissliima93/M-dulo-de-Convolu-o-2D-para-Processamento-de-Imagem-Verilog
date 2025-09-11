@@ -26,7 +26,7 @@ Saídas:
 ---------------------------------------------------
 
 Passo 2 — Escolher o valor de `P`
-- Nos arquivos Top_conv_p.v, linebuf3x3_win_p.v e tb_Top_conv_p.v, ajuste o parâmetro:
+- Nos arquivos Top_conv_p.v, linebuf3x3_win_p.v e Top_conv_p_tf.v, ajuste o parâmetro:
 
 parameter P = 1; // ou 4
 
