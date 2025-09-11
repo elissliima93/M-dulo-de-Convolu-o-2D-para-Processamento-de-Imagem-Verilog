@@ -1,5 +1,6 @@
-// Topo P-lanes para convolução 3x3 alinhado com valid_delay.
-// - Cada lane usa conv3x3_pipe (latência interna = 2 ciclos)
+
+// Topo P-lanes para convoluÃ§Ã£o 3x3 alinhado com valid_delay.
+// - Cada lane usa conv3x3_pipe (latÃªncia interna = 2 ciclos)
 // - out_valid_vec[l] = delay(win_valid_vec[l], CONV_LAT)
 // - line buffer: linebuf3x3_win_p (w00..w22 + win_valid_vec)
 
@@ -9,11 +10,11 @@ module Top_conv_p #(
   parameter integer WIDTH     = 256,
   parameter integer BITW      = 8,
   parameter integer ACCW      = 20,
-  parameter integer CONV_LAT  = 2,   // latência do conv3x3_pipe
-  parameter integer P         =4   //parametrizavel
+  parameter integer CONV_LAT  = 2,   // latÃªncia do conv3x3_pipe
+  parameter integer P         = 4   //parametrizavel
 )(
   input  wire                   clk,
-  input  wire                   rst,           // síncrono alto
+  input  wire                   rst,           // sÃ­ncrono alto
 
   // stream de entrada: P pixels/clk = {pix[P-1],...,pix[0]}
   input  wire                   in_valid,
@@ -24,7 +25,7 @@ module Top_conv_p #(
                                 k10, k11, k12,
                                 k20, k21, k22,
 
-  // saídas
+  // saÃ­das
   output wire [P-1:0]           out_valid_vec, // por lane
   output wire [P*8-1:0]         out_pix_vec,   // {y[P-1],...,y[0]}
 
@@ -38,7 +39,7 @@ module Top_conv_p #(
   wire [P*BITW-1:0] w20_bus, w21_bus, w22_bus;
   wire [P-1:0]      win_valid_w;
 
-  // módulo de line buffer (multi-lane)
+  // mÃ³dulo de line buffer (multi-lane)
   linebuf3x3_win_p #(
     .WIDTH (WIDTH),
     .BITW  (BITW),
@@ -73,7 +74,7 @@ module Top_conv_p #(
       wire [BITW-1:0] u21 = w21_bus[gi*BITW +: BITW];
       wire [BITW-1:0] u22 = w22_bus[gi*BITW +: BITW];
 
-      // convolução 3x3 (latência interna = 2 ciclos)
+      // convoluÃ§Ã£o 3x3 (latÃªncia interna = 2 ciclos)
       wire [7:0] y_conv;
       wire       v_conv_unused;
 
@@ -97,7 +98,7 @@ module Top_conv_p #(
         .out_valid(v_conv_unused)   // alinhamos com valid_delay
       );
 
-      // pixel de saída da lane
+      // pixel de saÃ­da da lane
       assign out_pix_vec[gi*8 +: 8] = y_conv;
 
       // alinha o out_valid: delay(win_valid, CONV_LAT)
