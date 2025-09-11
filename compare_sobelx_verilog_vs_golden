@@ -11,65 +11,30 @@ Requisitos:
   pip install numpy pillow matplotlib
 """
 
-import os
-import math
-import argparse
 import numpy as np
-from PIL import Image
 import matplotlib.pyplot as plt
+import pandas as pd
 
-# ========= CONFIG (pode editar aqui ou usar CLI) =========
-CONFIG = dict(
-    input_image_path="lena_256x256_hex.hex",   # .hex (um valor 00–FF por linha) OU .png/.pgm 8-bit
-    verilog_pgm_path="out_256x256_Lena_TopConvP4.pgm",  # PGM ASCII (P2) gerado no TB
-    out_dir="results",
-
-    # Golden Model params (Sobel-X):
-    divide_by_8=True,
-    rounding=True,   # arredonda antes de dividir por 8 (|s| -> (|s|+4)//8)
-    gain=2,          # ganho leve (ex.: 2). Use 1 para "sem ganho".
-)
-
-# ========= Utilidades de IO =========
-def ensure_dir(d):
-    if not os.path.isdir(d):
-        os.makedirs(d, exist_ok=True)
-
-def read_hex_image(path, width=None, height=None):
-    """
-    Lê arquivo .hex (um token 00–FF por linha). Retorna (arr, (H,W)).
-    Se width/height não forem dados, assume quadrado perfeito se possível.
-    """
+# =====================
+# Funções utilitárias
+# =====================
+def read_hex_image(path, width=256, height=256):
+    """Lê imagem .hex (um valor 00–FF por linha)."""
     with open(path, "r") as f:
         vals = [line.strip() for line in f if line.strip() != ""]
     arr = np.array([int(v, 16) for v in vals], dtype=np.uint8)
-
-    if width is None or height is None:
-        n = arr.size
-        side = int(round(math.sqrt(n)))
-        if side * side != n:
-            raise ValueError(
-                f"Dimensão não informada e não é quadrado perfeito: {n} pixels."
-            )
-        height = width = side
-
     if arr.size != width * height:
         raise ValueError(f"Tamanho incompatível: {arr.size} vs {width}x{height}.")
-    return arr.reshape((height, width)), (height, width)
+    return arr.reshape((height, width))
 
 def read_pgm_p2(path):
-    """
-    Lê PGM ASCII (P2).
-    Retorna np.uint8 (H,W).
-    """
+    """Lê PGM ASCII (P2)."""
     with open(path, "r") as f:
         lines = f.readlines()
-
-    # remove comentários
     lines = [ln for ln in lines if not ln.strip().startswith("#")]
     assert lines[0].strip() == "P2", "PGM deve ser P2 (ASCII)."
 
-    # encontra W H
+    # dimensões
     idx = 1
     while lines[idx].strip().startswith("#") or lines[idx].strip() == "":
         idx += 1
@@ -84,8 +49,6 @@ def read_pgm_p2(path):
     while lines[idx].strip() == "" or lines[idx].strip().startswith("#"):
         idx += 1
     maxval = int(lines[idx].strip())
-    if maxval <= 0:
-        raise ValueError("Maxval inválido no PGM.")
 
     # pixels
     idx += 1
@@ -97,185 +60,81 @@ def read_pgm_p2(path):
     data = np.array(list(map(int, pix_tokens)), dtype=np.int32)
     if data.size != W * H:
         raise ValueError(f"PGM com {data.size} amostras, esperado {W*H}.")
-    # escala para 0..255 se maxval != 255
     if maxval != 255:
         data = np.round(data * (255.0 / maxval)).astype(np.int32)
     return data.astype(np.uint8).reshape((H, W))
 
-def read_image_auto(path):
-    """
-    Lê .hex (00–FF por linha) ou imagem 8-bit (PNG/PGM) como np.uint8.
-    """
-    ext = os.path.splitext(path.lower())[1]
-    if ext == ".hex":
-        arr, _ = read_hex_image(path)
-        return arr
-    elif ext in [".png", ".jpg", ".jpeg", ".bmp", ".tif", ".tiff"]:
-        img = Image.open(path).convert("L")
-        return np.array(img, dtype=np.uint8)
-    elif ext == ".pgm":
-        # tenta PGM P2
-        try:
-            return read_pgm_p2(path)
-        except Exception:
-            # tenta via PIL (P5)
-            img = Image.open(path).convert("L")
-            return np.array(img, dtype=np.uint8)
-    else:
-        raise ValueError(f"Extensão não suportada: {ext}")
-
-# ========= Golden Model (Sobel-X) =========
 def sobel_x_golden(img_u8, divide_by_8=True, rounding=True, gain=2):
-    """
-    Implementa Sobel-X como usado no projeto:
-    y = clamp( gain * round_div8( | conv2d(img, Kx) | ) )
-
-    Kx =
-    [-1  0  1
-     -2  0  2
-     -1  0  1]
-    """
+    """Golden Sobel-X conforme especificação do relatório."""
     Kx = np.array([[-1, 0, 1],
                    [-2, 0, 2],
                    [-1, 0, 1]], dtype=np.int32)
-
     H, W = img_u8.shape
     img = img_u8.astype(np.int32)
-
-    # zero-padding
-    pad = 1
-    P = np.pad(img, ((pad, pad), (pad, pad)), mode="constant", constant_values=0)
-
-    # convolução "manual" (rápida o suficiente para 256x256)
+    P = np.pad(img, ((1,1),(1,1)), mode="constant", constant_values=0)
     acc = (Kx[0,0]*P[0:H,   0:W]   + Kx[0,1]*P[0:H,   1:W+1] + Kx[0,2]*P[0:H,   2:W+2] +
            Kx[1,0]*P[1:H+1, 0:W]   + Kx[1,1]*P[1:H+1, 1:W+1] + Kx[1,2]*P[1:H+1, 2:W+2] +
            Kx[2,0]*P[2:H+2, 0:W]   + Kx[2,1]*P[2:H+2, 1:W+1] + Kx[2,2]*P[2:H+2, 2:W+2])
-
-    acc_abs = np.abs(acc)  # signed -> abs
-
+    acc_abs = np.abs(acc)
     if divide_by_8:
         if rounding:
-            # arredonda para mais próximo: (x + 4) // 8
             acc_abs = (acc_abs + 4) // 8
         else:
             acc_abs = acc_abs // 8
-
-    # ganho leve
     if gain != 1:
         acc_abs = acc_abs * int(gain)
-
-    # clamp 0..255
     acc_abs = np.clip(acc_abs, 0, 255).astype(np.uint8)
     return acc_abs
 
-# ========= Métricas (Ω: miolo) =========
 def metrics_core(hw_u8, ref_u8):
-    assert hw_u8.shape == ref_u8.shape
+    """Calcula métricas MAE, MSE, PSNR no miolo Ω (ignora borda de 1px)."""
     H, W = hw_u8.shape
-    # miolo (remove borda de 1 px)
-    if H < 3 or W < 3:
-        raise ValueError("Imagem muito pequena para calcular métricas no miolo Ω.")
     hw = hw_u8[1:-1, 1:-1].astype(np.int32)
     rf = ref_u8[1:-1, 1:-1].astype(np.int32)
-
     diff = hw - rf
     mae = np.mean(np.abs(diff))
     mse = np.mean(diff**2)
-    if mse == 0:
-        psnr = float("inf")
-    else:
-        psnr = 10.0 * math.log10((255.0**2) / mse)
+    psnr = float("inf") if mse == 0 else 10.0 * np.log10((255.0**2) / mse)
     return mae, mse, psnr, diff
 
-# ========= Visualizações =========
-def save_side_by_side(imgA, imgB, titleA="Verilog (PGM)", titleB="Golden Model (Python)", outpath="results/side_by_side.png"):
-    plt.figure(figsize=(10,4))
-    plt.subplot(1,2,1); plt.imshow(imgA, vmin=0, vmax=255); plt.title(titleA); plt.axis("off")
-    plt.subplot(1,2,2); plt.imshow(imgB, vmin=0, vmax=255); plt.title(titleB); plt.axis("off")
-    plt.tight_layout()
-    plt.savefig(outpath, dpi=200, bbox_inches="tight")
-    plt.close()
+# =====================
+# Carregar arquivos
+# =====================
+img_in = read_hex_image("lena_256x256_hex.hex")
+img_verilog = read_pgm_p2("out_256x256_Lena_TopConvP.pgm")
+golden = sobel_x_golden(img_in, divide_by_8=True, rounding=True, gain=2)
 
-def save_error_map(diff, outpath="results/error_map.png"):
-    # diff é hw - ref no miolo (H-2, W-2)
-    plt.figure(figsize=(5,4))
-    plt.imshow(diff, cmap="bwr")
-    plt.colorbar(label="Erro (HW - Ref)")
-    plt.title("Mapa de erro no miolo (Ω)")
-    plt.axis("off")
-    plt.tight_layout()
-    plt.savefig(outpath, dpi=200, bbox_inches="tight")
-    plt.close()
+# =====================
+# Métricas
+# =====================
+mae, mse, psnr, diff_core = metrics_core(img_verilog, golden)
+print("==== COMPARAÇÃO (miolo Ω) ====")
+print(f"MAE_Ω  = {mae:.4f}")
+print(f"MSE_Ω  = {mse:.4f}")
+print(f"PSNR_Ω = {psnr:.4f} dB")
 
-def save_hist_overlay(imgA, imgB, labels=("Verilog","Golden"), outpath="results/hist_overlay.png"):
-    plt.figure(figsize=(6,4))
-    plt.hist(imgA.ravel(), bins=256, range=(0,255), histtype="step", linewidth=1.5, label=labels[0])
-    plt.hist(imgB.ravel(), bins=256, range=(0,255), histtype="step", linewidth=1.5, label=labels[1])
-    plt.xlabel("Nível de cinza"); plt.ylabel("Contagem")
-    plt.title("Histogramas sobrepostos")
-    plt.legend()
-    plt.tight_layout()
-    plt.savefig(outpath, dpi=200, bbox_inches="tight")
-    plt.close()
+# =====================
+# Visualizações
+# =====================
+fig, axes = plt.subplots(1,3, figsize=(15,5))
+axes[0].imshow(img_verilog, cmap="gray", vmin=0, vmax=255)
+axes[0].set_title("Saída Verilog (.pgm)"); axes[0].axis("off")
+axes[1].imshow(golden, cmap="gray", vmin=0, vmax=255)
+axes[1].set_title("Golden (Python Sobel-X)"); axes[1].axis("off")
+axes[2].imshow(diff_core, cmap="bwr")
+axes[2].set_title("Mapa de erro (miolo Ω)"); axes[2].axis("off")
+plt.show()
 
-# ========= Main =========
-def main():
-    parser = argparse.ArgumentParser(description="Compara PGM do Verilog com Golden Model (Python) para Sobel-X.")
-    parser.add_argument("--input", default=CONFIG["input_image_path"], help="Imagem de entrada (.hex ou .png/.pgm) 8-bit")
-    parser.add_argument("--pgm",   default=CONFIG["verilog_pgm_path"], help="PGM (P2/P5) gerado pelo Verilog")
-    parser.add_argument("--outdir", default=CONFIG["out_dir"], help="Diretório de resultados")
-
-    parser.add_argument("--no-div8", action="store_true", help="Não dividir por 8 no Golden")
-    parser.add_argument("--no-round", action="store_true", help="Não arredondar antes de dividir por 8")
-    parser.add_argument("--gain", type=int, default=CONFIG["gain"], help="Ganho leve após normalização (ex.: 2)")
-
-    args = parser.parse_args()
-
-    ensure_dir(args.outdir)
-
-    # Carrega imagem base (entrada do filtro)
-    img_in = read_image_auto(args.input)
-
-    # Golden Model Sobel-X
-    golden = sobel_x_golden(
-        img_in,
-        divide_by_8=not args.no_div8,
-        rounding=not args.no_round,
-        gain=args.gain
-    )
-
-    # Verilog PGM
-    hw = read_pgm_p2(args.pgm)
-
-    # Métricas (miolo Ω)
-    mae, mse, psnr, diff_core = metrics_core(hw, golden)
-
-    # Salva comparações
-    side_by_side_path = os.path.join(args.outdir, "compare_side_by_side.png")
-    error_map_path    = os.path.join(args.outdir, "error_map_core.png")
-    hist_path         = os.path.join(args.outdir, "hist_overlay.png")
-
-    save_side_by_side(hw, golden, "Verilog (PGM)", "Golden Model (Python)", side_by_side_path)
-    save_error_map(diff_core, error_map_path)
-    save_hist_overlay(hw, golden, ("Verilog","Golden"), hist_path)
-
-    # Também salva cópias das imagens (para relatório)
-    Image.fromarray(hw).save(os.path.join(args.outdir, "verilog_out.png"))
-    Image.fromarray(golden).save(os.path.join(args.outdir, "golden_out.png"))
-    Image.fromarray(img_in).save(os.path.join(args.outdir, "input_gray.png"))
-
-    # Relato no console
-    print("\n==== COMPARAÇÃO (miolo Ω) ====")
-    print(f"MAE_Ω  = {mae:.4f}")
-    print(f"MSE_Ω  = {mse:.4f}")
-    print(f"PSNR_Ω = {psnr:.4f} dB")
-    print("\nArquivos gerados em:", os.path.abspath(args.outdir))
-    print(" -", side_by_side_path)
-    print(" -", error_map_path)
-    print(" -", hist_path)
-    print(" -", os.path.join(args.outdir, "verilog_out.png"))
-    print(" -", os.path.join(args.outdir, "golden_out.png"))
-    print(" -", os.path.join(args.outdir, "input_gray.png"))
-
-if __name__ == "__main__":
-    main()
+# =====================
+# Histograma comparativo
+# =====================
+plt.figure(figsize=(7,5))
+plt.hist(golden.ravel(), bins=256, range=(0,255),
+         color='blue', alpha=0.5, label='Golden Python')
+plt.hist(img_verilog.ravel(), bins=256, range=(0,255),
+         color='red', alpha=0.5, label='Verilog')
+plt.title("Histograma comparativo — Golden vs Verilog")
+plt.xlabel("Níveis de cinza (0–255)")
+plt.ylabel("Frequência de pixels")
+plt.legend()
+plt.show()
