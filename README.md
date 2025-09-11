@@ -1,5 +1,4 @@
 # Modulo-de-Convoluco-2D-para-Processamento-de-Imagem-Verilog
-
 # Convolução 3x3 Parametrizada em Verilog
 
 Implementação em Verilog de uma convolução 3x3 para imagens em escala de cinza.  
@@ -7,37 +6,42 @@ O projeto suporta paralelismo parametrizado (`P=1` ou `P=4`) para avaliar desemp
 
 ---
 
-## Passo 1 — Gerar arquivo `.hex` de entrada
-
-- Use o script (Hex_generator.py.  
-- Ele carrega uma imagem em escala de cinza (0–255), converte para `.hex` (um valor por linha em formato `00–FF`) e também gera um `.pgm`.  
-- Como validação, ele plota histogramas sobrepostos:  
-  - **Azul** = imagem original.  
-  - **Vermelho tracejado** = imagem reconstruída do `.hex`.  
+```text
+Passo 1 — Gerar arquivo `.hex` de entrada
+- Use o script Hex_generator.py
+- Ele carrega uma imagem em escala de cinza (0–255), converte para `.hex` (um valor por linha em formato 00–FF) e também gera um `.pgm`.
+- Como validação, ele plota histogramas sobrepostos:
+    Azul = imagem original
+    Vermelho tracejado = imagem reconstruída do `.hex`
 
 Saídas:
-- `saida.hex` → usado pelo `$readmemh` no testbench.  
-- `saida.pgm` → imagem de referência.  
+- saida.hex → usado pelo $readmemh no testbench
+- saida.pgm → imagem de referência
 
----
+---------------------------------------------------
 
-## Passo 2 — Escolher o valor de `P`
+Passo 2 — Escolher o valor de `P`
+- Nos arquivos Top_conv_p.v, linebuf3x3_win_p.v e tb_Top_conv_p.v, ajuste o parâmetro:
 
-- Nos arquivos `Top_conv_p.v`, `linebuf3x3_win_p.v` e `tb_Top_conv_p.v`, ajuste o parâmetro:
-```verilog
 parameter P = 1; // ou 4
-##Passo 3 — Rodar a simulação
-Compile e rode tb_Top_conv_p.v no ModelSim/Questa.
-A saída será escrita como out_256x256_Lena_TopConvP.pgm
 
+- P=1 → 1 pixel por ciclo (≈65k ciclos para 256×256)
+- P=4 → 4 pixels por ciclo (≈16k ciclos, ~4× mais rápido)
 
+---------------------------------------------------
 
-##Passo 4 — Validar saída com o Leitor
-Use o script Leior_hex.py
+Passo 3 — Rodar a simulação
+- Compile e rode tb_Top_conv_p.v no ModelSim/Questa
+- A saída será escrita como:
+out_256x256_Lena_TopConvP.pgm
 
-Ele realiza a validação completa:
-Lê a entrada (.hex) e a saída do Verilog (.pgm).
-Gera o golden Sobel-X em Python.
-Mostra as imagens lado a lado: entrada, golden, saída Verilog e diferença absoluta.
-Plota histogramas comparativos (golden vs Verilog).
-Calcula métricas objetivas (MSE e PSNR) e estima deslocamentos de alinhamento.
+---------------------------------------------------
+
+Passo 4 — Validar saída com o Leitor
+- Use o script Leior_hex.py
+- Ele realiza a validação completa:
+    * Lê a entrada (.hex) e a saída do Verilog (.pgm)
+    * Gera o golden Sobel-X em Python
+    * Mostra as imagens lado a lado: entrada, golden, saída Verilog e diferença absoluta
+    * Plota histogramas comparativos (golden vs Verilog)
+    * Calcula métricas objetivas (MSE e PSNR) e estima deslocamentos de alinhamento
