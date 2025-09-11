@@ -7,7 +7,7 @@
 # Convolução 3x3 Parametrizada em Verilog
 
 Implementação em Verilog de uma convolução 3x3 para imagens em escala de cinza.  
-O projeto na pasa "Convolução_Final_P=4" suporta paralelismo parametrizado (`P=1` ou `P=4`) para avaliar desempenho e qualidade.
+O projeto na pasta "Convolução_Final_P=4" suporta paralelismo parametrizado (`P=1` ou `P=4`) para avaliar desempenho e qualidade.
 
 ---
 
